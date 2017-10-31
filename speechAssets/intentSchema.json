@@ -1,7 +1,13 @@
 {
   "intents": [
     {
-      "intent": "PLAY"
+      "intent": "MORNINGMURMUR"
+    },
+    {
+      "intent": "LUNCHTIMELOUNGE"
+    },
+    {
+      "intent": "UNIVERSITYUNDERTONES"
     },
     {
       "intent": "AMAZON.PauseIntent"
