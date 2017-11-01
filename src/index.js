@@ -32,6 +32,7 @@ var defaultHandler = {
 
         // start audio playback of Morning Murmur
         this.response.speak("Now playing " + audio.name + ".").audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, 0);
+        this.emit(":responseReady");
     },
 
     "LUNCHTIMELOUNGE": function () {
@@ -44,6 +45,7 @@ var defaultHandler = {
 
         // start audio playback of Lunchtime Lounge
         this.response.speak("Now playing " + audio.name + ".").audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, 0);
+        this.emit(":responseReady");
     },
 
     "UNIVERSITYUNDERTONES": function () {
@@ -56,6 +58,7 @@ var defaultHandler = {
 
         // start audio playback of University Undertones
         this.response.speak("Now playing " + audio.name + ".").audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, 0);
+        this.emit(":responseReady");
     },
 
     "AMAZON.PauseIntent": function () {
@@ -65,6 +68,7 @@ var defaultHandler = {
 
         // stop audio playback
         this.response.audioPlayerStop();
+        this.emit(":responseReady");
     },
 
     "AMAZON.ResumeIntent": function () {
@@ -76,6 +80,7 @@ var defaultHandler = {
 
         // resume audio playback
         this.response.audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, offsetInMilliseconds);
+        this.emit(":responseReady");
     },
 
     "AMAZON.HelpIntent": function () {
