@@ -28,6 +28,8 @@ var defaultHandler = {
         var index = 0;
         var audio = audioData[index];
 
+        this.attributes["index"] = index;
+
         // start audio playback of Morning Murmur
         this.response.speak("Now playing " + audio.name + ".").audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, 0);
     },
@@ -38,6 +40,8 @@ var defaultHandler = {
         var index = 1;
         var audio = audioData[index];
 
+        this.attributes["index"] = index;
+
         // start audio playback of Lunchtime Lounge
         this.response.speak("Now playing " + audio.name + ".").audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, 0);
     },
@@ -47,6 +51,8 @@ var defaultHandler = {
 
         var index = 2;
         var audio = audioData[index];
+
+        this.attributes["index"] = index;
 
         // start audio playback of University Undertones
         this.response.speak("Now playing " + audio.name + ".").audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, 0);
@@ -77,20 +83,20 @@ var defaultHandler = {
 
         this.emit(":tell", "You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. To play a stream, you can say 'Alexa, ask Shoptalk to play Morning Murmur', for example.");
     },
-    
+
     "PlaybackNearlyFinished": function () {
         printDebugInformation("defaultHandler:PlaybackNearlyFinished");
-        
+
         var index = parseInt(this.attributes["index"]);
         var audio = audioData[index];
-        
+
         // queue up the audio stream to loop playback
         this.response.audioPlayerPlay("ENQUEUE", audio.url, audio.name, null, 0);
     },
 
     "PlaybackFailed": function () {
         printDebugInformation("defaultHandler:PlaybackFailed");
-        
+
         this.emit(":tell", "Sorry, I'm having trouble accessing the audio stream right now. Please try again later.");
     },
 
