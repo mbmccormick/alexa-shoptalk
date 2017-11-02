@@ -19,7 +19,7 @@ var defaultHandler = {
     "LaunchRequest": function () {
         printDebugInformation("defaultHandler:LaunchRequest");
 
-        this.emit(":tell", "Welcome to Shoptalk. You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. To play a stream, you can say 'Alexa, ask Shoptalk to play Morning Murmur', for example.");
+        this.emit(":ask", "Welcome to Shoptalk. You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. Which one would you like to play?", "Which audio stream would you like to play?");
     },
 
     "MORNINGMURMUR": function () {
