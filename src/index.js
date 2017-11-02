@@ -83,10 +83,20 @@ var defaultHandler = {
         this.emit(":responseReady");
     },
 
+    "AMAZON.StopIntent": function () {
+        printDebugInformation("defaultHandler:AMAZON.StopIntent");
+
+        this.attributes["offsetInMilliseconds"] = this.event.request.offsetInMilliseconds;
+
+        // stop audio playback
+        this.response.audioPlayerStop();
+        this.emit(":responseReady");
+    },
+
     "AMAZON.HelpIntent": function () {
         printDebugInformation("defaultHandler:AMAZON.HelpIntent");
 
-        this.emit(":tell", "You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. To play a stream, you can say 'Alexa, ask Shoptalk to play Morning Murmur', for example.");
+        this.emit(":ask", "You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. Which one would you like to play?", "Which audio stream would you like to play?");
     },
 
     "PlaybackNearlyFinished": function () {
