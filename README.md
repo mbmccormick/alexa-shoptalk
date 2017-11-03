@@ -1,4 +1,4 @@
-# Weatherbot
+# Shoptalk
 
 Coffitivity noise machine from Alexa! Shoptalk lets you access the Coffitivity ambient noise service to help you boost your creativity and be more productive.
 
