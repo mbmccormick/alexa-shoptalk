@@ -19,7 +19,7 @@ var defaultHandler = {
     "LaunchRequest": function () {
         printDebugInformation("defaultHandler:LaunchRequest");
 
-        this.emit(":ask", "Welcome to Shoptalk. You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. Which one would you like to play?", "Which audio stream would you like to play?");
+        this.emit(":ask", "Welcome to Shop Talk. You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. Which one would you like to play?", "Which audio stream would you like to play?");
     },
 
     "MORNINGMURMUR": function () {
@@ -93,6 +93,16 @@ var defaultHandler = {
         this.emit(":responseReady");
     },
 
+    "AMAZON.CancelIntent": function () {
+        printDebugInformation("defaultHandler:AMAZON.CancelIntent");
+
+        this.attributes["offsetInMilliseconds"] = this.event.request.offsetInMilliseconds;
+
+        // stop audio playback
+        this.response.audioPlayerStop();
+        this.emit(":responseReady");
+    },
+
     "AMAZON.HelpIntent": function () {
         printDebugInformation("defaultHandler:AMAZON.HelpIntent");
 
@@ -107,6 +117,13 @@ var defaultHandler = {
 
         // queue up the audio stream to loop playback
         this.response.audioPlayerPlay("ENQUEUE", audio.url, audio.name, null, 0);
+        this.emit(":responseReady");
+    },
+
+    "PlaybackFinished": function () {
+        printDebugInformation("defaultHandler:PlaybackFinished");
+
+        this.emit(":responseReady");
     },
 
     "PlaybackFailed": function () {
