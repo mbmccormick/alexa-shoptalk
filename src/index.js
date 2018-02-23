@@ -19,7 +19,9 @@ var defaultHandler = {
     "LaunchRequest": function () {
         printDebugInformation("defaultHandler:LaunchRequest");
 
-        this.emit(":ask", "Welcome to Shop Talk. You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. Which one would you like to play?", "Which audio stream would you like to play?");
+        this.response.speak("Welcome to Shop Talk. You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. Which one would you like to play?")
+            .listen("Which audio stream would you like to play?");
+        this.emit(":responseReady");
     },
 
     "MORNINGMURMUR": function () {
@@ -31,7 +33,8 @@ var defaultHandler = {
         this.attributes["index"] = index;
 
         // start audio playback of Morning Murmur
-        this.response.speak("Now playing " + audio.name + ".").audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, 0);
+        this.response.speak("Now playing " + audio.name + ".")
+            .audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, 0);
         this.emit(":responseReady");
     },
 
@@ -44,7 +47,8 @@ var defaultHandler = {
         this.attributes["index"] = index;
 
         // start audio playback of Lunchtime Lounge
-        this.response.speak("Now playing " + audio.name + ".").audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, 0);
+        this.response.speak("Now playing " + audio.name + ".")
+            .audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, 0);
         this.emit(":responseReady");
     },
 
@@ -57,7 +61,8 @@ var defaultHandler = {
         this.attributes["index"] = index;
 
         // start audio playback of University Undertones
-        this.response.speak("Now playing " + audio.name + ".").audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, 0);
+        this.response.speak("Now playing " + audio.name + ".")
+            .audioPlayerPlay("REPLACE_ALL", audio.url, audio.name, null, 0);
         this.emit(":responseReady");
     },
 
@@ -106,7 +111,9 @@ var defaultHandler = {
     "AMAZON.HelpIntent": function () {
         printDebugInformation("defaultHandler:AMAZON.HelpIntent");
 
-        this.emit(":ask", "You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. Which one would you like to play?", "Which audio stream would you like to play?");
+        this.response.speak("You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. Which one would you like to play?")
+            .listen("Which audio stream would you like to play?");
+        this.emit(":responseReady");
     },
 
     "PlaybackNearlyFinished": function () {
@@ -116,7 +123,7 @@ var defaultHandler = {
         var audio = audioData[index];
 
         // queue up the audio stream to loop playback
-        this.response.audioPlayerPlay("ENQUEUE", audio.url, audio.name, null, 0);
+        this.response.audioPlayerPlay("ENQUEUE", audio.url, audio.name, audio.name, 0);
         this.emit(":responseReady");
     },
 
@@ -129,13 +136,15 @@ var defaultHandler = {
     "PlaybackFailed": function () {
         printDebugInformation("defaultHandler:PlaybackFailed");
 
-        this.emit(":tell", "Sorry, I'm having trouble accessing the audio stream right now. Please try again later.");
+        this.response.speak("Sorry, I'm having trouble accessing the audio stream right now. Please try again later.");
+        this.emit(":responseReady");
     },
 
     "Unhandled": function () {
         printDebugInformation("defaultHandler:Unhandled");
 
-        this.emit(":tell", "Sorry, I didn't understand your request. If you need help, just ask for help.");
+        this.response.speak("Sorry, I didn't understand your request. If you need help, just ask for help.");
+        this.emit(":responseReady");
     }
 
 };
