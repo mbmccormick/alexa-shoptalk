@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - "6.10"
+
+before_install:
+  - cd src
+
+install:
+  - npm install
+
+script:
+  - 
+
+deploy:
+  provider: lambda
+  access_key_id:
+    secure: "WvKk1TdTZL3wc+asr5hHPVAgS413KIWcl6+EvcccBuwX0na/P4k0IUUdlwznONA59o5JZcEP3BlCgEUlyGqOmGLxsNjTpZkTaNLBN8iFNSfy38Wb2MDl4lZoiygnPJrn7uHCgtlF61HZmeC3Ylz025mBlB+dtSi8ELqz8HYDvoWW8BQ3HOtr3UvtKcG/7t1FSd3zu2prWw52LtF7ZvSrWv8JeucoC0iGX5BDqQm1MZDG51hqFdU+d/RDZiL/fqBmLzgTI3KAP4XL5JQRrjAbFTL808r1jlIT0nrxGJSw0wkNdxD1AwwfedDLYRsKTlkBYbuPsE6J91sRoH5ssq4t/5+wnWRY/IkIADldB/NW7S2ofg50Vkh6Dp3pw/JHA7LeqHsP739QG0gDVEoEe3pWkq5XlCMgkp/N8QO6cf1OZih0E7zO0VS8MNOWpYYmLT0YioOL65RUeU2C/F6aSUY2VSEVKlL0LXa6iQ6llHp6XORZSf2zLYciWdEnVaaBeKTcYQZ8RI2p9ZHsHYouKi6C2ixa+3UcT50AhhjvoFrC0Var+/4huGkuwoYCzGPK61Fl3sWWguXBRYiKLRpeTyjpC0Zft2cy2/8y0JENiCW3z67T0PdgZIzp0+XBxMFI5E3SL4t5mS1p+HK3btR21rU+P3wH8PtBmTO4/z07z6TYR90="
+  secret_access_key: 
+    secure: "ttFIBYYVuPkk6dRUElaxlfnYvbDfy6b+p+pcvpG9ht3nRCNAtGr30GjrOocqpv8mIQkgscMiXdavnEftWN8/9RcfksafG57ZA/yDMBbFTC02b+oqvyaMem2yPRfi9z0MkRS1to9smMhRc+P/jkc7hzcQNQETEqVrDgi/hgNZiFNtwY72vSq9oN6F16in7cZTFpbFhbm85cMKX0iMJY/fa33MJ/e+XByzs1eA2AvPZ1oyIBZbF8Vy0LOOhYVRabT9SwwjpGNUcZ2PwxzPxT3T7cCOOrtJIWi+mhju2P+CyQcsl9AzT4QBb4Squ+FLUbtK3qcW+ZD0klcXL/uhY49h7hRG+v0NQ9OK6b/ldM4+k+JuvcQ4YOAy/DoEO3xKGa5S6uTZwJEAjzaNntamBuqW5plnp2uZzNH9SqVBm0WIfS1myB/6IEgAM5GMHSQxdx2M9KuAF+RqRqs+LWOp1VGIThJsJGgZDqdRDa2a2otUcpWtBn6PNeEl9VKQvJe+oXloClnqq4py+/hagDgLe3Isxg7olYiGGEUyMBaBccyowa9R7M5W+o2jP5tgubdtoAsxjS6+jESvGVWkjnSTTehWv06N4VJ6FsZhNCt+mfhrosDCmPlRNhOQ9LwOKYn2pdoDdrbP3KbINDE3ixSCSZc5/Zb7fza/FsnQPaa+vwNCsdk="
+  region: "us-east-1"
+  function_name: "Shoptalk"
+  role: "arn:aws:iam::138911770317:role/AlexaCustomSkill"
+  runtime: "nodejs6.10"
+  handler_name: "handler"
+  zip: ${TRAVIS_BUILD_DIR}/src
