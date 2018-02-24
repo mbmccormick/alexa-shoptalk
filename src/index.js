@@ -19,8 +19,8 @@ var defaultHandler = {
     "LaunchRequest": function () {
         printDebugInformation("defaultHandler:LaunchRequest");
 
-        this.response.speak("Welcome to Shop Talk. You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. Which one would you like to play?")
-            .listen("Which audio stream would you like to play?");
+        this.response.speak("Welcome to Shop Talk. You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. Which one would you like?")
+            .listen("Which audio stream would you like?");
         this.emit(":responseReady");
     },
 
@@ -94,7 +94,7 @@ var defaultHandler = {
         this.attributes["offsetInMilliseconds"] = this.event.request.offsetInMilliseconds;
 
         // stop audio playback
-        this.response.audioPlayerStop();
+        this.response.audioPlayerClearQueue("CLEAR_ALL");
         this.emit(":responseReady");
     },
 
@@ -104,15 +104,15 @@ var defaultHandler = {
         this.attributes["offsetInMilliseconds"] = this.event.request.offsetInMilliseconds;
 
         // stop audio playback
-        this.response.audioPlayerStop();
+        this.response.audioPlayerClearQueue("CLEAR_ALL");
         this.emit(":responseReady");
     },
 
     "AMAZON.HelpIntent": function () {
         printDebugInformation("defaultHandler:AMAZON.HelpIntent");
 
-        this.response.speak("You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. Which one would you like to play?")
-            .listen("Which audio stream would you like to play?");
+        this.response.speak("You can choose from three audio streams: Morning Murmur, Lunchtime Lounge, and University Undertones. Which one would you like?")
+            .listen("Which audio stream would you like?");
         this.emit(":responseReady");
     },
 
